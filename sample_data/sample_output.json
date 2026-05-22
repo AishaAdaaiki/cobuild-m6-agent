@@ -1,0 +1,86 @@
+{
+  "session": {
+    "venture_name": "Flowpath Logistics",
+    "date": "2025-05-20",
+    "attendees": ["Sara (Fellow / Founder)", "Khalid (Studio Tech Lead)", "Noor (Studio Ops)"],
+    "module": "M6 Product & Technology"
+  },
+  "issues": [
+    {
+      "title": "Get official Qatar Customs API sandbox credentials",
+      "description": "The Qatar Customs integration is currently built against an undocumented API endpoint obtained informally. Ops needs to formally contact Qatar Customs to obtain official sandbox credentials before this can ship. Expected response time is ~2 weeks.",
+      "priority": "urgent",
+      "suggested_owner": "studio_ops",
+      "label": "infra"
+    },
+    {
+      "title": "Upgrade Mapbox plan to paid tier",
+      "description": "Free tier rate limits (50k requests/month) will be exhausted within two weeks at current test data volume (~800 requests/session). Studio has approved upgrade to Mapbox paid ($50/month). Fellow to submit reimbursement request.",
+      "priority": "urgent",
+      "suggested_owner": "fellow",
+      "label": "infra"
+    },
+    {
+      "title": "Implement Supabase auth — login and signup screens",
+      "description": "User authentication has not been started and is on the critical path to the 3-week PWA beta target. Fellow to set up Supabase today and have login and signup screens complete by Thursday EOD for Friday review with tech lead.",
+      "priority": "urgent",
+      "suggested_owner": "fellow",
+      "label": "feature"
+    },
+    {
+      "title": "Design onboarding wireframes (3 screens)",
+      "description": "PWA onboarding requires three screens: Welcome, Role Selection (coordinator or dispatcher), and Connect Your Company. Wireframes needed by Wednesday for review.",
+      "priority": "high",
+      "suggested_owner": "fellow",
+      "label": "design"
+    },
+    {
+      "title": "Upload completed API architecture document to Drive",
+      "description": "API architecture doc is complete but not uploaded — currently showing as overdue in Linear. Fellow to upload today.",
+      "priority": "high",
+      "suggested_owner": "fellow",
+      "label": "milestone"
+    },
+    {
+      "title": "Finish and upload data model document",
+      "description": "Data model is 80% complete and overdue from last Friday. Fellow to finish and upload by Tuesday EOD.",
+      "priority": "high",
+      "suggested_owner": "fellow",
+      "label": "milestone"
+    },
+    {
+      "title": "Complete competitive landscape analysis (G0 requirement)",
+      "description": "G0 review is in 12 days and competitive landscape has not been started. Requires at minimum three direct competitors mapped with clear differentiation. Must be done by Wednesday — not a heavy lift but a hard gate requirement.",
+      "priority": "high",
+      "suggested_owner": "fellow",
+      "label": "research"
+    },
+    {
+      "title": "Translate QSTP tech license application to Arabic",
+      "description": "QSTP has flagged the tech license application as incomplete — they require a technical product description in Arabic. Fellow to send English version to Ops today; Ops to arrange technical translation by end of week.",
+      "priority": "high",
+      "suggested_owner": "studio_ops",
+      "label": "milestone"
+    },
+    {
+      "title": "Add M6 product spec template to fellow Drive folder",
+      "description": "Fellow has been working without the standard M6 product spec template. Ops to copy template into Flowpath Drive folder today.",
+      "priority": "medium",
+      "suggested_owner": "studio_ops",
+      "label": "infra"
+    }
+  ],
+  "decisions": [
+    "Stay on Mapbox paid tier ($50/month) for now rather than migrating to OpenStreetMap — revisit after G0",
+    "Ship PWA first, target beta in 3 weeks — native app deferred (6+ weeks)",
+    "Use Supabase for authentication",
+    "Studio ops will handle Qatar Customs official API access request"
+  ],
+  "open_questions": [
+    "Will Qatar Customs respond to the official API access request within 2 weeks before it impacts G0?",
+    "Can the customs integration be adequately mocked for the 3-week beta pilot if official access is delayed?",
+    "What is the QSTP timeline after translation is submitted — could this block M7 progression?"
+  ],
+  "slack_summary": "Flowpath Logistics co-build (M6) — 20 May. Three blockers addressed: Qatar Customs API is being escalated for official sandbox access (Noor, this week), Mapbox is being upgraded to paid immediately, and QSTP translation is in progress (EOW). Auth is on Sara's plate by Thursday for Friday review. Three overdue Linear items (API doc, data model, competitive landscape) are resolved by Wednesday — G0 is in 12 days and the milestone tracker is at ~40%. No critical risks to the 3-week PWA beta target assuming customs can be mocked.",
+  "linear_urls": []
+}

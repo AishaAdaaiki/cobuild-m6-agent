@@ -1,0 +1,96 @@
+Co-Build Session Transcript
+Venture: Flowpath Logistics
+Module: M6 Product & Technology
+Date: 2025-05-20
+Attendees: Sara (Fellow / Founder), Khalid (Studio Tech Lead), Noor (Studio Ops)
+
+---
+
+[00:00] Khalid: Alright, let's get into it. Sara, last week you shipped the shipment tracking API stub — where are we on that?
+
+[00:12] Sara: It's live in staging. The issue is the Qatar Customs API docs are outdated. I spent two days on it and the auth endpoint they document doesn't exist anymore. I had to find a working version through a LinkedIn contact.
+
+[00:28] Khalid: Okay — so the customs integration is blocked on their actual current API spec. Did you get it?
+
+[00:34] Sara: Sort of. My contact sent me an unofficial PDF. It works but we can't ship against undocumented endpoints. We need to get official access.
+
+[00:45] Khalid: That's a real blocker. Let's log that as urgent — we need someone to formally reach out to Qatar Customs and get sandbox credentials. Noor, can ops own that?
+
+[00:53] Noor: Yes, I'll draft the email today. We've done this before with QDB — same process. I'd say two weeks to get a response.
+
+[01:05] Khalid: Noted. Sara, while that's in progress, what can you build around it?
+
+[01:10] Sara: The shipment status dashboard. I've got mock data running, the frontend is basically done, but I need real data to validate the filters. Also the map component — I'm using Mapbox but the free tier is hitting rate limits already with our test data volume.
+
+[01:27] Khalid: How many requests are you making?
+
+[01:31] Sara: About 800 per session. The free tier allows 50k per month — we'll burn through that in two weeks with a real user.
+
+[01:40] Khalid: We need to upgrade the Mapbox plan or find an alternative. Let's decide now: upgrade to Mapbox paid or switch to OpenStreetMap with Leaflet?
+
+[01:50] Sara: OpenStreetMap is open source so no rate limits, but migration will cost me two days. Mapbox paid is $50/month.
+
+[01:58] Khalid: Studio call — we go paid Mapbox for now, get unblocked, and revisit after G0. Sara, raise a reimbursement request with Noor. Noor, approve it from the tech budget.
+
+[02:07] Noor: Done.
+
+[02:10] Khalid: Next — the mobile app. Sara, you said last week you wanted to ship a PWA first. Still the plan?
+
+[02:17] Sara: Yes. Native app is at least 6 weeks out. PWA gets us to beta users faster. I want to run the first logistics coordinator pilot in 3 weeks.
+
+[02:28] Khalid: Three weeks is aggressive. What's the critical path?
+
+[02:34] Sara: Customs integration is one — but we said we'll mock that. Two: the user auth flow. I haven't started it. Three: the onboarding screens.
+
+[02:44] Khalid: Auth needs to be done this week. Are you using Supabase?
+
+[02:48] Sara: I was going to, yes.
+
+[02:50] Khalid: Good. Set it up today, have the login and signup screens by Thursday. I'll review Friday morning.
+
+[02:58] Sara: Okay, Thursday end of day.
+
+[03:05] Khalid: Onboarding — how many screens?
+
+[03:08] Sara: Three. Welcome, role selection — coordinator or dispatcher — and connect your company.
+
+[03:15] Khalid: That's fine. Can you have wireframes by Wednesday?
+
+[03:18] Sara: Yes.
+
+[03:20] Khalid: Alright. Noor — two things from ops. One, the fellow folder in Drive still doesn't have the M6 product spec template. Sara's been working without it.
+
+[03:31] Noor: I'll fix that today — I'll copy the template and share it.
+
+[03:35] Khalid: Two, G0 review is in 12 days. We need the milestone tracker updated. Sara, you're at roughly 40% on the M6 checklist based on what I can see in Linear. Three items are overdue.
+
+[03:48] Sara: Which ones?
+
+[03:50] Khalid: The API architecture doc, the data model, and the competitive landscape. All were due last Friday.
+
+[03:58] Sara: The API doc is actually done — I just haven't uploaded it. I'll do that today. The data model is 80% — I can finish it tomorrow. Competitive landscape I haven't started.
+
+[04:10] Khalid: Competitive landscape is a G0 requirement. You need at least three direct competitors mapped with a clear differentiation. Get that done before Wednesday — it's not a heavy lift.
+
+[04:22] Sara: Understood.
+
+[04:24] Khalid: Any other blockers?
+
+[04:27] Sara: One thing — I applied for the QSTP tech license and they said my application is incomplete. They want a technical description of the product in Arabic. I don't have a translator.
+
+[04:40] Khalid: That's a real problem. Noor, can the studio get that translated?
+
+[04:44] Noor: Yes — I know a technical translator we've used. I'll get it done by end of week.
+
+[04:50] Khalid: Good. Sara, send Noor the English version today.
+
+[04:54] Sara: Will do.
+
+[04:56] Khalid: Alright — let's close. Summary: customs integration unblocked next two weeks with Noor on official access, Mapbox upgraded immediately, auth done by Thursday, onboarding wireframes Wednesday, three overdue Linear items resolved by Wednesday, QSTP translation in progress. Sound right?
+
+[05:12] Sara: Yes.
+
+[05:14] Khalid: Good. See you Friday for auth review.
+
+---
+[END OF TRANSCRIPT]
