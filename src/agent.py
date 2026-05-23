@@ -4,6 +4,8 @@ Co-Build Session Agent · Utopia Studio M6
 Input  : raw Granola transcript (text file or stdin)
 Output : structured JSON → Linear issues + Slack summary
 """
+from dotenv import load_dotenv
+load_dotenv()
 
 import os
 import json

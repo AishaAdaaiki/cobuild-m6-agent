@@ -1,17 +1,12 @@
 """
 transcript_parser.py
 ---------------------
-Sends the raw Granola transcript to Claude and returns structured data:
-  - session metadata (venture name, date, attendees)
-  - Linear issues (title, description, priority, suggested owner)
-  - key decisions made
-  - open questions
-  - Slack summary paragraph
+Sends the raw Granola transcript to Gemini via OpenRouter and returns structured data.
 """
 
 import os
 import json
-import anthropic
+import requests
 
 SYSTEM_PROMPT = """You are an operator assistant at Utopia Studio, a venture studio in Doha.
 You process raw co-build session transcripts and extract structured output for the studio team.
@@ -63,23 +58,30 @@ Rules:
 - slack_summary must be usable as-is in a Slack message, no placeholders
 
 TRANSCRIPT:
-{transcript}
 """
 
 
 def parse_transcript(transcript_text: str) -> dict:
-    client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+    api_key = os.environ["OPENROUTER_API_KEY"]
 
-    prompt = EXTRACTION_PROMPT.format(transcript=transcript_text)
-
-    message = client.messages.create(
-        model="claude-sonnet-4-20250514",
-        max_tokens=2000,
-        system=SYSTEM_PROMPT,
-        messages=[{"role": "user", "content": prompt}],
+    response = requests.post(
+        url="https://openrouter.ai/api/v1/chat/completions",
+        headers={
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json",
+        },
+        json={
+            "model": "openrouter/auto",
+            "messages": [
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user", "content": EXTRACTION_PROMPT + transcript_text},
+            ],
+        },
+        timeout=30,
     )
 
-    raw = message.content[0].text.strip()
+    response.raise_for_status()
+    raw = response.json()["choices"][0]["message"]["content"].strip()
 
     # Strip any accidental markdown fences
     if raw.startswith("```"):
@@ -91,12 +93,12 @@ def parse_transcript(transcript_text: str) -> dict:
     try:
         parsed = json.loads(raw)
     except json.JSONDecodeError as e:
-        raise ValueError(f"Claude returned invalid JSON: {e}\n\nRaw output:\n{raw}")
+        raise ValueError(f"Model returned invalid JSON: {e}\n\nRaw output:\n{raw}")
 
     # Validate required keys
     required = ["session_meta", "issues", "decisions", "open_questions", "slack_summary"]
     for key in required:
         if key not in parsed:
-            raise ValueError(f"Missing key in Claude output: {key}")
+            raise ValueError(f"Missing key in output: {key}")
 
     return parsed
